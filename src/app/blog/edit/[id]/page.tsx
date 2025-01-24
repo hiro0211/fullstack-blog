@@ -20,6 +20,17 @@ const editBlog = async (
   return await res.json();
 };
 
+const deleteBlog = async (id: number) => {
+  const res = await fetch(`http://localhost:3000/api/blog/${id}`, {
+    method: "DELETE",
+    headers: {
+      "Content-Type": "application/json",
+    },
+  });
+
+  return await res.json();
+};
+
 const getBlogById = async (id: number) => {
   const res = await fetch(`http://localhost:3000/api/blog/${id}`);
   const data = await res.json();
@@ -51,6 +62,15 @@ const EditPost = ({ params }: { params: { id: number } }) => {
     titleRef.current!.value = "";
     descriptionRef.current!.value = "";
 
+    router.push("/");
+    router.refresh();
+  };
+
+  const handleDelete = async () => {
+    toast.loading("削除中...", { duration: 2000 });
+    await deleteBlog(params.id);
+    
+    toast.success("削除完了", { duration: 2000 });
     router.push("/");
     router.refresh();
   };
@@ -89,7 +109,10 @@ const EditPost = ({ params }: { params: { id: number } }) => {
             <button className="font-semibold px-4 py-2 shadow-xl bg-slate-200 rounded-lg m-auto hover:bg-slate-100">
               更新
             </button>
-            <button className="ml-2 font-semibold px-4 py-2 shadow-xl bg-red-400 rounded-lg m-auto hover:bg-slate-100">
+            <button
+              onClick={handleDelete}
+              className="ml-2 font-semibold px-4 py-2 shadow-xl bg-red-400 rounded-lg m-auto hover:bg-slate-100"
+            >
               削除
             </button>
           </form>
