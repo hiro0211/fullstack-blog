@@ -9,8 +9,7 @@ const PostBlog = () => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    console.log(titleRef.current?.value);
-    console.log(descriptionRef.current?.value);
+    
   }
 
   return (
