@@ -59,9 +59,6 @@ const EditPost = ({ params }: { params: { id: number } }) => {
 
     toast.success("編集完了", { duration: 2000 });
 
-    titleRef.current!.value = "";
-    descriptionRef.current!.value = "";
-
     router.push("/");
     router.refresh();
   };
@@ -69,7 +66,7 @@ const EditPost = ({ params }: { params: { id: number } }) => {
   const handleDelete = async () => {
     toast.loading("削除中...", { duration: 2000 });
     await deleteBlog(params.id);
-    
+
     toast.success("削除完了", { duration: 2000 });
     router.push("/");
     router.refresh();
