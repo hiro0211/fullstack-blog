@@ -5,7 +5,7 @@ import { title } from "process";
 import React, { useRef } from "react";
 import { Toaster, toast } from "react-hot-toast";
 
-const postblog = async (
+const postBlog = async (
   title: string | undefined,
   description: string | undefined
 ) => {
@@ -34,7 +34,7 @@ const PostBlog = () => {
     }
 
     toast.loading("投稿中...", { duration: 2000 });
-    await postblog(titleRef.current!.value, descriptionRef.current!.value);
+    await postBlog(titleRef.current!.value, descriptionRef.current!.value);
 
     toast.success("投稿完了", { duration: 2000 });
 
