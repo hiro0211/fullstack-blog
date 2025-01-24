@@ -11,6 +11,7 @@ export async function main() {
   }
 }
 
+// 全記事取得用API
 export const GET = async (req: Request, res: NextResponse) => {
   try {
     await main();
@@ -26,11 +27,11 @@ export const GET = async (req: Request, res: NextResponse) => {
 // ブログ投稿用API
 export const POST = async (req: Request, res: NextResponse) => {
   try {
-    const { title, description}=await req.json();
+    const { title, description } = await req.json();
 
     await main();
-    const posts = await prisma.post.create({data: {title,description}});
-    return NextResponse.json({ message: "Success", posts }, { status: 201 });
+    const post = await prisma.post.create({ data: { title, description } });
+    return NextResponse.json({ message: "Success", post }, { status: 201 });
   } catch (error) {
     return NextResponse.json({ message: "Error", error }, { status: 500 });
   } finally {
