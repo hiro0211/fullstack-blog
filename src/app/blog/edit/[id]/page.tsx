@@ -72,6 +72,7 @@ const EditPost = ({ params }: { params: { id: number } }) => {
     router.refresh();
   };
 
+  // 編集前のデータを取得
   useEffect(() => {
     getBlogById(params.id)
       .then((data) => {
@@ -91,7 +92,7 @@ const EditPost = ({ params }: { params: { id: number } }) => {
           <p className="text-2xl text-slate-200 font-bold p-3">
             ブログの編集 🚀
           </p>
-          <form onSubmit={handleSubmit}>
+          <div>
             <input
               ref={titleRef}
               placeholder="タイトルを入力"
@@ -103,7 +104,10 @@ const EditPost = ({ params }: { params: { id: number } }) => {
               placeholder="記事詳細を入力"
               className="rounded-md px-4 py-2 w-full my-2"
             ></textarea>
-            <button className="font-semibold px-4 py-2 shadow-xl bg-slate-200 rounded-lg m-auto hover:bg-slate-100">
+            <button
+              className="font-semibold px-4 py-2 shadow-xl bg-slate-200 rounded-lg m-auto hover:bg-slate-100"
+              onSubmit={handleSubmit}
+            >
               更新
             </button>
             <button
@@ -112,7 +116,7 @@ const EditPost = ({ params }: { params: { id: number } }) => {
             >
               削除
             </button>
-          </form>
+          </div>
         </div>
       </div>
     </div>
